@@ -1,0 +1,46 @@
+Redesign and reimplement my portfolio site (this repository, live at
+https://alexrajcoomar.github.io). Read HANDOFF.md first — it is accurate,
+verified against these files, and states the invariants; then audit the
+project yourself before proposing anything: run the build twice
+(python3 build/build_site.py — the second run must print "rewrote:
+nothing"), open the site locally, and confirm your understanding of the
+generated-versus-content split before you edit a single file.
+
+Then work in two phases.
+
+PHASE 1 — AUDIT. Deliver a short written diagnosis before any code:
+what serves the thirty-second recruiter read well today, what does not,
+and which changes carry the most impact per unit of risk. Ground every
+claim in something you measured or read in the files, not in impressions.
+
+PHASE 2 — REDESIGN AND IMPLEMENT, on a feature branch, in small
+reviewable commits. You have real freedom: visual system, typography
+scale, layout, the home page's storytelling, how the listing pages are
+organized, navigation, and the piece-page chrome are yours to rethink.
+Aim for polished, modern, quietly impressive, responsive, and accessible
+(WCAG AA minimum) — clarity and professional presentation over visual
+effects. Strong opinions are welcome where you can defend them.
+
+Hard constraints, non-negotiable:
+1. Every existing URL and #anchor keeps resolving. No content is lost,
+   reworded, or "cleaned up": piece pages are the portfolio's content,
+   including their provenance labels and internal design.
+2. No frameworks, bundlers, or external dependencies. The build stays
+   python3 build/build_site.py, idempotent, with all existing checks
+   passing (extend them if you add claims worth checking).
+3. admin.html keeps working against the unchanged content/pieces.json
+   schema, and the GitHub Actions pipeline (measure → cards → build →
+   commit-back) keeps working untouched in behaviour.
+4. The Atlas keeps its data, interactions, honesty contract, and
+   performance (idle 0 rAF, 60fps drag, scripts-off fallback). The
+   offline layer (sw.js flow, manifests, colophon save button) and the
+   self-hosted font subset keep working; re-subset if you add glyphs.
+5. Every number shown is computed by the build or measured by CI, never
+   typed. Zero external network requests from any page.
+
+Verify before you call it done: build idempotence, the full check suite,
+Lighthouse ≥ current scores on home and Atlas (mobile and desktop),
+keyboard navigation, both themes, scripts-off rendering, and a spot check
+that admin.html loads and parses pieces.json. Finish with a summary of
+what changed, what you measured before and after, and anything you chose
+not to do and why.
