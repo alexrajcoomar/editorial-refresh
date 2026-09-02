@@ -1,0 +1,4 @@
+# Frozen copy of the 27 August 2026 editorial refresh, kept for comparison.
+# The live site is https://alexrajcoomar.github.io/
+User-agent: *
+Disallow: /
